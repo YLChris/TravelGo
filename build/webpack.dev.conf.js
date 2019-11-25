@@ -1,3 +1,4 @@
+//上线打包的配置集合
 'use strict'
 const utils = require('./utils')
 const webpack = require('webpack')
