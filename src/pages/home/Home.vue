@@ -1,12 +1,16 @@
 <template>
     <div>
-       hello world
+       <Home-header></Home-header>
     </div>
 </template>
 
 <script>
+import HomeHeader from './components/Header'
 export default {
-  name: 'Home'
+  name: 'Home',
+  components: {
+    HomeHeader: HomeHeader
+  }
 }
 </script>
 

@@ -45,4 +45,32 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
         main.js:import fastClick from 'fastclick'   
                 fastClick.attach(document.body)这样子就可以使用fastClick了
   5).此时用了阿里巴巴的iconfont创建了图标管理项目
+  6).在项目中安装stylus   
+  目的：便于css样式代码编写
+  操作:npm install stylus --save   npm install stylus-loader --save
 
+4:项目中stylus的使用
+  1).<style lang="stylus" scoped></style>即可使用stylus   scoped限制只在当前组件使用  不会影响其他组件
+  2).1rem = html的font-size=50px   也就是43px等于0.86rem---->  .86rem
+
+5:iconfont的使用
+  1).到iconfont将需要的图标添加至购物车 下载   将.eot,.svg,.ttf,.woff结尾的新建文件夹iconfont放置其中
+  2).将iconfont.css放置styles目录
+  3).在iconfont.css中将里面的url改成对应上述四个后缀结尾的文件所在位置
+  4).图标的使用  <span class="iconfont">&#xe624;</span>命名一个iconfont的类，在iconfont的网站复制对应图标的代码
+6:全场主色调 
+  1).可以创建一个varibles.stl文件代表这是一个stylus要使用的全局变量文件
+  在对应要使用主色调的css中添加 @import '~@/assets/styles/varibles.styl'  此时的@符号代表src目录  当在css样式文件中引入其他css时  要在@前添加~
+  2).在varibles.styl中定义主色调的变量在需要使用该颜色的文件内引用  变量名可随意起
+7:别名配置
+  1).在文件中 经常引用到src目录下的styles目录下的文件
+     那么可以在webpack.base.conf.js文件下增加如下所示的styles别名去代替完整的路径
+     resolve: {
+      extensions: ['.js', '.vue', '.json'],
+      alias: {
+        'vue$': 'vue/dist/vue.esm.js',
+        '@': resolve('src'),
+        'styles': resolve('src/assets/styles')
+      }
+    }
+  2).修改了配置项之后要重启服务
