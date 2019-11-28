@@ -74,3 +74,15 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
       }
     }
   2).修改了配置项之后要重启服务
+
+8:轮播图使用了GitHub上搜索的surmon-china/vue-awesome-swiper
+  1):优点能够简单的建立一个轮播
+  2):使用(可参考github上的手册)
+    便于稳定使用2.6.7版本
+    1.npm install vue-awesome-swiper@2.6.7 --save
+    2.在main.js上引用
+    import VueAwesomeSwiper from 'vue-awesome-swiper'
+    import 'swiper/dist/css/swiper.css'
+    3.穿透  在wrapper下的这个样式穿透变红色
+    .wrapper >>> .swiper-pagination-bullet-active
+        background :red !important
