@@ -59,7 +59,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
   3).在iconfont.css中将里面的url改成对应上述四个后缀结尾的文件所在位置
   4).图标的使用  <span class="iconfont">&#xe624;</span>命名一个iconfont的类，在iconfont的网站复制对应图标的代码
 6:全场主色调 
-  1).可以创建一个varibles.stl文件代表这是一个stylus要使用的全局变量文件
+  1).可以创建一个varibles.styl文件代表这是一个stylus要使用的全局变量文件
   在对应要使用主色调的css中添加 @import '~@/assets/styles/varibles.styl'  此时的@符号代表src目录  当在css样式文件中引入其他css时  要在@前添加~
   2).在varibles.styl中定义主色调的变量在需要使用该颜色的文件内引用  变量名可随意起
 7:别名配置
@@ -86,3 +86,16 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
     3.穿透  在wrapper下的这个样式穿透变红色
     .wrapper >>> .swiper-pagination-bullet-active
         background :red !important
+9:三个点省略号(在对应文字上样式)
+    overflow: hidden
+    white-space: nowrap   不进行换行
+    text-overflow: ellipsis   以省略号代表被修剪的文字
+10:可以复用样式  利用stylus提供的styl去定义一个方法样式
+    mixins.styl
+      ellipsisxxx()
+      overflow: hidden
+      white-space: nowrap
+      text-overflow: ellipsis
+    使用：
+    css中导入@import '~styles/mixins.styl';
+    在需要的地方添加对应的ellipsisxxx()
