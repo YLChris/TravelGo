@@ -99,3 +99,6 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
     使用：
     css中导入@import '~styles/mixins.styl';
     在需要的地方添加对应的ellipsisxxx()
+  11:1像素边框的问题  在Recommend里的li上加上border-bottom即可
+  12:在flex设置为1时，mix-width设置为0可以保证内容不溢出flex容器
+     情景（在Recommend的省略号中使用了）
