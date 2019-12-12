@@ -15,7 +15,7 @@ export default {
     return {
       swiperOption: {/** 都是这个插件的属性,swiperOption可更改,然其内部的属性不可更改 */
         pagination: '.swiper-pagination',
-        loop: true
+        loop: true/** 循环播放 */
       },
       swiperList: [{
         id: '0001',
