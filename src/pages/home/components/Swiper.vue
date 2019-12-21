@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
-        <swiper :options="swiperOption">
-            <swiper-slide v-for="item of swiperList" :key="item.id">
+        <swiper :options="swiperOption" v-if="showSwiper">
+            <swiper-slide v-for="item of list" :key="item.id">
                 <img class="swiper-img" :src="item.imgUrl"/>
             </swiper-slide>
             <div class="swiper-pagination"  slot="pagination"></div>
@@ -11,19 +11,20 @@
 <script>
 export default {
   name: 'HomeSwiper',
+  props: {
+    list: Array
+  },
   data () {
     return {
       swiperOption: {/** 都是这个插件的属性,swiperOption可更改,然其内部的属性不可更改 */
         pagination: '.swiper-pagination',
         loop: true/** 循环播放 */
-      },
-      swiperList: [{
-        id: '0001',
-        imgUrl: 'https://imgs.qunarzz.com/piao/fusion/1809/f4/03da905b8b7d2202.jpg_890x330_afab380f.jpg'
-      }, {
-        id: '0002',
-        imgUrl: 'https://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20195/5992b485924b2f348e59e9285a804f3d.jpg_890x330_37202f9c.jpg'
-      }]
+      }
+    }
+  },
+  computed: {
+    showSwiper () { /** 为了放置轮播图默认显示为第一张图  在此处判断swiper数组内有值的话则显示 不会因为空数组胡乱显示其他图片 */
+      return this.list.length
     }
   }
 }

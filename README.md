@@ -102,3 +102,21 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
   11:1像素边框的问题  在Recommend里的li上加上border-bottom即可
   12:在flex设置为1时，mix-width设置为0可以保证内容不溢出flex容器
      情景（在Recommend的省略号中使用了）
+
+  13：axios 使用ajax
+     安装：npm install axios --save
+    在home.vue中使用axios异步请求  创建static/mock来模拟数据库数据
+    只有在static下的目录下才能由外部进行访问
+    访问src下的目录将会直接定位到对应页面
+
+    代理路径访问  Home.vue中的模拟数据的访问  代理跳转
+    在config目录下的index.js的dev环境配置该：   则'^/api/'意思是以api开头的用户将会定位到static/mock下
+    proxyTable: {
+      '/api':{
+        target: 'http://localhost:8080',
+        pathRewrite: {
+          '^/api': '/static/mock'
+        }
+      }
+    },
+    配置成功后脚手架工具将会自动将api转换成static/mock下
