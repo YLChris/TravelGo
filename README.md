@@ -120,3 +120,4 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
       }
     },
     配置成功后脚手架工具将会自动将api转换成static/mock下
+    14:  Header.vue跳转到city.vue使用router-link跳转新路由
