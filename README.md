@@ -38,6 +38,13 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
   目的：手机浏览器的限制   在入口文件main.js引入此css保证页面初始化样式一致
   3).引入border.css
   目的：手机大屏可能导致的1像素问题  即在大屏显示中  1像素可能显示多像素
+  在需要显示1像素border的区块上直接添加样式即可
+  要改变border-topbottom（上下）的颜色
+  .border-topbottom    
+    &:before
+        border-color: #ccc
+    &:after
+        border-color: #ccc
   4).引入fastClick库
    目的：由于有些浏览器的限制  click事件可能延迟几秒  导致用户体验感差
    操作：npm install fastclick --save  将此库安装在项目的依赖中   --save是不管在开发环境还是生产环境都要使用fastclick
@@ -121,3 +128,5 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
     },
     配置成功后脚手架工具将会自动将api转换成static/mock下
     14:  Header.vue跳转到city.vue使用router-link跳转新路由
+    15: better-scroll滚动条使用以及字母表布局   github：ustbhuangyi/better-scroll
+        npm install better-scroll --save
