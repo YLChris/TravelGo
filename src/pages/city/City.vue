@@ -2,8 +2,9 @@
     <div>
         <city-header></city-header>
         <city-search></city-search>
-        <city-list :tranCities="cities" :tranHotCities="hotCities"></city-list>
-        <city-Alphabet :tranCities="cities"></city-Alphabet>
+        <city-list :tranCities="cities" :tranHotCities="hotCities" :tranLetter="letter"></city-list>
+        <city-Alphabet :tranCities="cities"
+        @cityChange="handleLetterChange"></city-Alphabet>
     </div>
 </template>
 <script>
@@ -23,7 +24,8 @@ export default {
   data () {
     return {
       cities: {},
-      hotCities: []
+      hotCities: [],
+      letter: '' // 父组件向子组件List.vue传值
     }
   },
   methods: {
@@ -37,6 +39,9 @@ export default {
         this.cities = data.cities
         this.hotCities = data.hotCities
       }
+    },
+    handleLetterChange (letter) { // 此时是监听子组件Alphabet通过emit向外触发的事件
+      this.letter = letter
     }
   },
   mounted () {

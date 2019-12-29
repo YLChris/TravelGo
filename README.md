@@ -130,3 +130,10 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
     14:  Header.vue跳转到city.vue使用router-link跳转新路由
     15: better-scroll滚动条使用以及字母表布局   github：ustbhuangyi/better-scroll
         npm install better-scroll --save
+        具体查看city/list.vue里面使用
+    16:字母表跳转到对应模块 （兄弟组件之间传值）
+       1：通过Alphabet组件传值到父组件，再由父组件传值到List子组件
+       2：此时获取的元素会是个数组   因为循环的缘故 所有标上序号
+       const element = this.$refs[this.tranLetter][0]
+       List.vue中this.scroll.scrllToElement()可以让滚动条自动滚动到某个元素上
+    17:Alphabet.vue中touchstart，touchmove,touchend是betterScroll的模块，不可修改

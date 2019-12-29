@@ -17,7 +17,10 @@
                     </div>
                 </div>
             </div>
-            <div class="area" v-for="(item,key) of tranCities" :key="key">
+            <div class="area"
+                 v-for="(item,key) of tranCities"
+                 :key="key"
+                 :ref="key">
                 <div class="title border-topbottom">{{key}}</div>
                 <div class="item-list" v-for="sonItem of item" :key="sonItem.id">
                     <div class="item border-bottom">{{sonItem.name}}</div>
@@ -32,7 +35,16 @@ export default {
   name: 'CityList',
   props: {
     tranCities: Object,
-    tranHotCities: Array
+    tranHotCities: Array,
+    tranLetter: String
+  },
+  watch: {
+    tranLetter () { // 监听tranLetter的变化，betterScroll提供了一个接口，this.scroll.scrllToElement()可以自动滚动到某个元素上
+      if (this.tranLetter) {
+        const element = this.$refs[this.tranLetter][0] // 可以通过定义一个ref来获取对应的dom元素，ref在dom中定义为key
+        this.scroll.scrollToElement(element) // 此接口参数必须为dom元素或者dom选择器
+      }
+    }
   },
   mounted () {
     this.scroll = new Bscroll(this.$refs.wrapper) /** this是指vue实例,$refs是指整个Vue实例里的所有引用,helloDom是所有引用里的某一个 */
