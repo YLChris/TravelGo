@@ -29,8 +29,13 @@ export default {
   },
   data () {
     return {
-      touchStatus: false
+      touchStatus: false,
+      startY: 0,
+      timer: null
     }
+  },
+  updated () {
+    this.startY = this.$refs['A'][0].offsetTop // offsetTop是A元素距离顶部的高度，cities在其父组件没有值，通过ajax传值之后有值将会触发当前组件的数据变化，继而整个vue元素重新渲染，则会触发updated
   },
   methods: {
     handleLetterClick (e) {
@@ -41,12 +46,16 @@ export default {
     },
     handleTouchMove (e) {
       if (this.touchStatus) { // 只允许在为true的时候进行计算
-        const startY = this.$refs['A'][0].offsetTop // offsetTop是A元素距离顶部的高度
-        const touchY = e.touches[0].clientY - 79 // 事件对象e.touches[0]就可以获取手指的信息，clientY是距离最顶部的高度，79是指像素是指最顶部距离alphabet的字母框的距离
-        const index = Math.floor((touchY - startY) / 20) // 20是每个字母的高度
-        if (index >= 0 && index < this.letters.length) {
-          this.$emit('cityChange', this.letters[index])
+        if (this.timer) {
+          clearTimeout(this.timer)
         }
+        this.timer = setTimeout(() => {
+          const touchY = e.touches[0].clientY - 79 // 事件对象e.touches[0]就可以获取手指的信息，clientY是距离最顶部的高度，79是指像素是指最顶部距离alphabet的字母框的距离
+          const index = Math.floor((touchY - this.startY) / 20) // 20是每个字母的高度
+          if (index >= 0 && index < this.letters.length) {
+            this.$emit('cityChange', this.letters[index])
+          }
+        }, 16)
       }
     },
     handleTouchEnd () {
