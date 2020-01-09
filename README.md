@@ -138,4 +138,4 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
        List.vue中this.scroll.scrllToElement()可以让滚动条自动滚动到某个元素上
     17:Alphabet.vue中touchstart，touchmove,touchend是betterScroll的模块，不可修改
     18：updated生命周期函数  在DOM元素重新被渲染之后将会被触发
-    19:函数节流 search.vue中使用了 Alphabet timer creatTimeOut 将会延迟动作发生  当前一个动作移动未完成又执行下一个的时候，将会清楚上一个动作，从而优化性能
+    19:函数节流 search.vue中使用了 Alphabet timer creatTimeOut 将会延迟动作发生  当前一个动作移动未完成又执行下一个的时候，将会清除上一个动作，从而优化性能
