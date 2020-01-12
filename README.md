@@ -139,3 +139,51 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
     17:Alphabet.vue中touchstart，touchmove,touchend是betterScroll的模块，不可修改
     18：updated生命周期函数  在DOM元素重新被渲染之后将会被触发
     19:函数节流 search.vue中使用了 Alphabet timer creatTimeOut 将会延迟动作发生  当前一个动作移动未完成又执行下一个的时候，将会清除上一个动作，从而优化性能
+    20：vuex 数据框架   （官网查看）
+        目的：为了解决组件之间复杂传值
+        原理：vuex将公用的数据存放在一个公共的数据存储区域   当某个组件改变了公用的数据  其他的组件能够感知到公共数据存储区域改变
+
+        公共数据存储区域分布部分：
+        1：state （存储公共数据），当数据发生改变时，不能直接改变state，要通过某个流程进行操作
+        2: 更改数据流程----》vue components--（dispatch）--->调用Actions--(commit)-->Mutations------>state改变数据
+
+        使用方式：新增store文件夹  创建index.js  其中Vuex是插件   vue中使用插件儿是用的Vue.use(Vuex)
+
+        例子：1.在home下的head组件里使用this.$store.state即可使用到store/index.js下的数据存储区的数据
+             2.当要改变state时，需要调用dispatch方法去调用action达到改变的效果
+                this.$store.dispatch('changeCity', city);
+                在store下的index下有一个属性为actions，是在改变state时做出改变而调用dispatch分发到actions某个动作上
+                
+                actions里分发的方法有俩参数 （ctx）是上下文，另一个是传递的值
+
+
+              改变state数据的方法：此处可以用commit直接调用mutations
+              ```
+              1：this.$store.dispatch('changeCity', city)
+              actions: {
+                changeCity (ctx, city) { // actions被分发，ctx是上下文，继而调用commit方法去调用对应的mutations去改变具体state的数据
+                  ctx.commit('changeCityxxx', city)
+                }
+              },
+              mutations: {
+                changeCityxxx (state, city) { // state公用数据
+                  state.city = city
+                }
+              }
+              2: this.$store.commit('changeCityxxx', city)
+              mutations: {
+                changeCityxxx (state, city) { // state公用数据
+                  state.city = city
+                }
+              }
+
+              ```
+      21:页面跳转router编程式路由
+          1：a标签
+          2：router-link标签
+          3：vue代码中this.$router.push('地址')  //this.$router实例里自带push 方法
+      22:vuex的localstoreage的使用
+      23:vuex中state,mutations,actions拆分为不同的js，只要在主要的index.js中引入即可
+      24:mapState,mapMutations...映射到computed计算属性
+
+

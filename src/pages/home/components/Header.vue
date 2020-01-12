@@ -9,7 +9,8 @@
         </div>
         <router-link to='/city'>
             <div class="header-right">
-            {{this.cityAAAA}}
+            <!-- {{this.$store.state.city}} 从vuex引入了mapState映射，只需要调用cityxxx-->
+            {{this.cityxxx}}
             <span class="iconfont arrow-icon">&#xe64a;</span>
             </div>
         </router-link>
@@ -17,10 +18,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'HomeHeader',
-  props: {
-    cityAAAA: String
+  computed: {
+    ...mapState(['cityxxx']) // 展开运算符... mapState是用来将state中的公用数据cityxxx映射到名为cityxxx的计算属性中，即可在本文中引用名为cityxxx的计算属性
   }
 }
 </script>
@@ -49,7 +51,8 @@ export default {
         padding-left: .2rem
         color: #ccc
     .header-right
-        width: 1.24rem
+        min-width: 1.04rem
+        padding: 0 .1rem
         float: right
         text-align: center
         color: #fff

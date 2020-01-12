@@ -1,6 +1,6 @@
 <template>
     <div>
-       <Home-header :cityAAAA="cityxxx"></Home-header>
+       <Home-header></Home-header>
        <Home-swiper :list="swiperList"></Home-swiper>
        <Home-icons :listAAAA="iconList"></Home-icons>
       <Home-recommend :recommendListAAAA="recommendList"></Home-recommend>
@@ -26,7 +26,6 @@ export default {
   },
   data () {
     return {
-      cityxxx: '',
       swiperList: [],
       iconList: [],
       recommendList: [],
@@ -41,7 +40,6 @@ export default {
       res = res.data
       if (res.ret && res.data) {
         const data = res.data
-        this.cityxxx = data.city
         this.swiperList = data.swiperList
         this.iconList = data.iconList
         this.recommendList = data.recommendList
@@ -49,7 +47,7 @@ export default {
       }
     }
   },
-  mounted () {
+  mounted () { // 生命周期钩子初始化调用该方法
     this.getHomeInfo()
   }
 }

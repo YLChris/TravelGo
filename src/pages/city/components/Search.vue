@@ -5,7 +5,10 @@
     </div>
     <div class="search-content" ref="search" v-show="keyword">
         <ul>
-          <li class="search-item border-bottom" v-for="item of list" :key="item.id">
+          <li class="search-item border-bottom"
+              v-for="item of list"
+              :key="item.id"
+              @click="handleCityClick(item.name)">
             {{item.name}}
           </li>
           <li class="search-item border-bottom" v-show="hasNoData">
@@ -17,6 +20,7 @@
 </template>
 <script>
 import Bscroll from 'better-scroll'
+import { mapMutations } from 'vuex'
 export default {
   name: 'CitySearch',
   props: {
@@ -55,6 +59,14 @@ export default {
         this.list = result
       }, 100)
     }
+  },
+  methods: {
+    handleCityClick (city) {
+      // 优化this.$store.commit('changeCityxxx', city)跟this.changeCityxxx(city)等同，只是后一方法引入了mapMUtations
+      this.changeCityxxx(city)
+      this.$router.push('/')
+    },
+    ...mapMutations(['changeCityxxx']) // 将mutations映射到一个名为changeCityxxx的方法中
   },
   mounted () {
     this.scroll = new Bscroll(this.$refs.search)

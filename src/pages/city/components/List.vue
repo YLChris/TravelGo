@@ -5,14 +5,17 @@
                 <div class="title border-topbottom">当前城市</div>
                 <div class="button-list">
                     <div class="button-wrapper">
-                        <div class="button">北京</div>
+                        <div class="button">{{this.currentCity}}</div>
                     </div>
                 </div>
             </div>
             <div class="area">
                 <div class="title border-topbottom">热门城市</div>
                 <div class="button-list">
-                    <div class="button-wrapper" v-for="item of tranHotCities" :key="item.id">
+                    <div class="button-wrapper"
+                         v-for="item of tranHotCities"
+                         @click="handleCityClick(item.name)"
+                         :key="item.id">
                         <div class="button">{{item.name}}</div>
                     </div>
                 </div>
@@ -22,7 +25,10 @@
                  :key="key"
                  :ref="key">
                 <div class="title border-topbottom">{{key}}</div>
-                <div class="item-list" v-for="sonItem of item" :key="sonItem.id">
+                <div class="item-list"
+                     v-for="sonItem of item"
+                     :key="sonItem.id"
+                     @click="handleCityClick(sonItem.name)">
                     <div class="item border-bottom">{{sonItem.name}}</div>
                 </div>
             </div>
@@ -31,12 +37,26 @@
 </template>
 <script>
 import Bscroll from 'better-scroll'
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'CityList',
   props: {
     tranCities: Object,
     tranHotCities: Array,
     tranLetter: String
+  },
+  computed: {
+    ...mapState({
+      currentCity: 'cityxxx' // mapState既可以存放数组也可以存放对象，把公共属性名为cityxxx的数据赋值到计算属性currentCity上
+    })
+  },
+  methods: {
+    handleCityClick (city) {
+      // 优化this.$store.commit('changeCityxxx', city)跟this.changeCityxxx(city)等同，只是后一方法引入了mapMUtations
+      this.changeCityxxx(city)
+      this.$router.push('/')
+    },
+    ...mapMutations(['changeCityxxx']) // 将mutations映射到一个名为changeCityxxx的方法中
   },
   watch: {
     tranLetter () { // 监听tranLetter的变化，betterScroll提供了一个接口，this.scroll.scrllToElement()可以自动滚动到某个元素上

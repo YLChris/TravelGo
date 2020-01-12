@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import fastClick from 'fastclick'
+import store from './store'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'styles/reset.css'
 import 'styles/border.css'
@@ -17,6 +18,7 @@ Vue.use(VueAwesomeSwiper)
 new Vue({
   el: '#app',
   router,
+  store: store, // 引入store,数据存储区为了组件间复杂传值,此时在每个子组件都可以通过this.$store.xxx的形式获取值
   components: { App },
   template: '<App/>'
 })
