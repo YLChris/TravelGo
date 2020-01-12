@@ -185,5 +185,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
       22:vuex的localstoreage的使用
       23:vuex中state,mutations,actions拆分为不同的js，只要在主要的index.js中引入即可
       24:mapState,mapMutations...映射到computed计算属性
+      25:keep-alive在App.vue中包裹router-view
+          用处：为了在路由被加载过一次之后，将路由中的内容放到内存中，下次再次执行路由时，就不会再去加载对应的路由组件，直接从内存中将路由内容显示即可，对应生命周期钩子的函数异步操作也不会被执行
 
 
