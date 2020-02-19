@@ -187,9 +187,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
       24:mapState,mapMutations...映射到computed计算属性
       25:keep-alive在App.vue中包裹router-view
           用处：为了在路由被加载过一次之后，将路由中的内容放到内存中，下次再次执行路由时，就不会再去加载对应的路由组件，直接从内存中将路由内容显示即可，对应生命周期钩子的函数异步操作也不会被执行
-
+          是Vue的内置组件，能在组件切换过程中将状态保留在内存中，防止重复渲染DOM
       26:使用router-link跳转页面，vue将会对应渲染成一个a标签，在此基础上可以添加tag标签，tag标签内部声明为li，那么在页面渲染时将会是li标签
-      在其中可以通过动态绑定to传递参数详情见Recommend.vue
+      在其中可以通过动态绑定to传递参数（为具体将要跳转的地址）详情见Recommend.vue
       27:热门推荐详情画廊组件，创建文件夹common/gallary/Gallary.vue
          创建完Gallary.vue文件后在build/webpack.base.conf.js下的resolve/alias新建一个别名
          'common': resolve('src/common')
