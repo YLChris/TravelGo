@@ -273,3 +273,14 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
             vue-router官网滚动行为
             使用前端路由，当切换到新路由时，想要页面滚到顶部，或者是保持原先的滚动位置，就像重新加载页面那样。 vue-router 能做到，而且更好，它让你可以自定义路由切换时页面如何滚动
             在router/index.js中配置scrollBehavior
+        35.detail下header组件由于被keep-alive忽略了
+           原本的activated方法和disactivated方法都失效了
+           ```
+           此为失效的代码   改用了mounted
+           activated () { /* 因为使用了keep-alive，当前页面只要一展示，activated将会被执行 */
+              window.addEventListener('scroll', this.handleScroll)
+            },
+            deactivated () { /* 全局解绑，当页面被隐藏，去掉监听事件，为了防止在其他页面被全局调用 */
+              window.removeEventListener('scroll', this.handleScroll)
+            }
+           ```
