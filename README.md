@@ -196,3 +196,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
       28: display弹性盒子
       flex-direction: column容器内子元素由上至下进行排列  row从左至右进行排列
       justify-content: center子元素在父容器中垂直分布
+      29： 在detail的Header页对滚动头进行了全局滚动监听，在此基础上是在window上进行绑定的滚动监听，因此在其他页面可能会收到影响，因此需要进行全局事件解绑
+      页面中使用了路由被keep-alive那么生命周期钩子函数将会多出这几个函数
+      deactivated:页面被隐藏被执行该方法
+      activated：页面一展示将会被执行

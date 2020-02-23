@@ -42,6 +42,9 @@ export default {
   },
   activated () { /* 因为使用了keep-alive，当前页面只要一展示，activated将会被执行 */
     window.addEventListener('scroll', this.handleScroll)
+  },
+  deactivated () { /* 全局解绑，当页面被隐藏，去掉监听事件，为了防止在其他页面被全局调用 */
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
