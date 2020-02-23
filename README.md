@@ -202,3 +202,74 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
       activated：页面一展示将会被执行
 
       30： 递归组件  detail的Detail.vue与List.vue可看递归组件
+      ### 31: this.$route.params路由传参  详情参考Detail的ajax请求
+        router/index.js
+        > 1.如果你要使用params传参，那么你的路由页面index.js必须带上参数，如下
+        /data/:id这个路由匹配/data/1,/data/2这里的 id 叫 params
+
+        ```
+        {
+          path: '/detail/:id/',
+          name: "detail",
+          component: detail//这个details是传进来的组件名称
+        }
+
+        使用： 
+        方法1：<router-link :to="{ name: 'details', params: { id: 123 }}">点击按钮</router-link>
+        方法2：this.$router.push({name:'details',params:{id:123}})
+        页面url显示结果是：http://localhost:8081/#/details/123
+        ```
+
+        > 2.如果你要使用query传参，那么你的路由页面index.js不需要带上参数，如下
+        /data?id=1 /data?id=2 这里的 id 叫 query
+
+        ```
+            {
+              path: '/detail',//这里不需要参入参数，参见上面的params写法
+              name: "detail",
+              component: detail//这个details是传进来的组件名称
+            }
+
+            使用： 
+            方法1：<router-link :to="{ name: 'details', query: { id: 123 }}">点击按钮</router-link>
+            方法2：this.$router.push({name:'details',query:{id:123}})
+
+            方法3：<router-link :to="{ path: 'details', query: { id: 123 }}">点击按钮</router-link>
+            方法4：this.$router.push({path:'details',query:{id:123}})
+            页面url显示结果是：http://localhost:8081/#/details?id=123
+        ```
+
+        > 3.要是想获取参数值：各自的获取方法是：
+          ```
+          query和params分别是：this.$route.query.id，this.$route.params.id
+          ```
+
+          ##### 注意：这里看方法3,4,其实是对应方法1,2的，也就是说使用query方法，可以与path和name共用，2个都可以，但是params只能对应name
+
+        > 4.顺便说一些参数是多个的情况params传参，如果路由index.js如下
+        ```
+            {
+              path: '/detail/:id/:name',
+              name: "detail",
+              component: detail//这个details是传进来的组件名称
+            }
+            那么跳转写法：this.$router.push({name:'detail',params:{id:123,name:'lisi'}})
+            效果：http://localhost:8081/#/details/123/lisi
+        ```
+        ##### query跟params，前者在浏览器地址栏中显示参数，后者则不显示。
+
+        32.若要某个组件的路由不被keep-alive影响，那么有两种方式
+            1.activated生命周期钩子函数
+            由于使用了keep-alive做了路由router缓存，则页面一加载的时候mounted将只会执行一次，要想解决此问题就可以配合使用
+            activated生命周期钩子函数(或可只使用activated)，例如detail下的header.vue
+            2.在APP.vue中的keep-alive加上exclude=“你需要除去的组件”即可除去keep-alive对该组件造成的影响
+
+        33.每个组件内的name作用
+            1：递归组件使用到
+            2：keep-alive进行缓存,对某个页面或组件取消缓存时使用到name
+            3: vue插件里的结构展示
+        34：问题：在detail组件里  访问不同的页面  在第一个页面拉动到下面时，打开第二个页面将会停在第一个页面所在位置
+            解决方法：
+            vue-router官网滚动行为
+            使用前端路由，当切换到新路由时，想要页面滚到顶部，或者是保持原先的滚动位置，就像重新加载页面那样。 vue-router 能做到，而且更好，它让你可以自定义路由切换时页面如何滚动
+            在router/index.js中配置scrollBehavior

@@ -5,7 +5,7 @@
                 <span class="item-title-icon"></span>
                 {{item.title}}
             </div>
-            <div v-if="item.children" class="item-children">
+            <div v-if="item.children" class="item-children"><!--循环组件-->
                 <detail-list :sonlist="item.children"></detail-list>
             </div>
         </div>
