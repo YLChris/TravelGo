@@ -200,3 +200,5 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
       页面中使用了路由被keep-alive那么生命周期钩子函数将会多出这几个函数
       deactivated:页面被隐藏被执行该方法
       activated：页面一展示将会被执行
+
+      30： 递归组件  detail的Detail.vue与List.vue可看递归组件
