@@ -284,3 +284,5 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
               window.removeEventListener('scroll', this.handleScroll)
             }
            ```
+
+        36.Fade.vue实现详情页Banner的图片画廊渐隐渐显动画
