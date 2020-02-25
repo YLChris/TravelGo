@@ -1,10 +1,10 @@
 <template>
-    <ul class="list">
+    <ul class="list"><!--此处的touchstart.prevent是为了阻止手指拖动字母表时导致页面跟着走，防止了toychstart的默认行为-->
         <li class="item"
         v-for="item of letters"
         :key="item"
         :ref="item"
-        @touchstart="handleTouchStart"
+        @touchstart.prevent="handleTouchStart"
         @touchmove="handleTouchMove"
         @touchend="handleTouchEnd"
         @click="handleLetterClick">

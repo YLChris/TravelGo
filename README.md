@@ -286,3 +286,36 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
            ```
 
         36.Fade.vue实现详情页Banner的图片画廊渐隐渐显动画
+
+        37.前后端联调 
+           将config/index.js的proxyTable的服务器地址改成后端访问地址即可，
+           后续的
+           ```
+          pathRewrite: {
+            '^/api': '/static/mock'
+          }
+           ```
+           可酌情处理
+
+        38.真机处理测试
+           项目的package.json中
+           ```
+          "scripts": {
+              "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+              "start": "npm run dev",
+              "lint": "eslint --ext .js,.vue src",
+              "build": "node build/build.js"
+            },
+           ```
+           在dev这个属性中增加--host 0.0.0.0，即可通过本机IP进行访问http://192.168.0.113:8080/
+        
+        39.防止部分手机版本过低导致的白屏
+        npm install babel-polyfill --save
+        会自动判断有没有polyfill，给浏览器添加ES6的新特性
+        在main.js中加入import 'babel-polyfill'
+
+
+        40.上线打包
+            项目目录npm run build会生成一个dist的文件夹，这里的代码是最终要上线的代码，将dist放到后端根目录下
+            若要放在后端新建的文件夹里的话，在config/index.js里配置assetsPublicPath成所新建的文件夹路径
+          
